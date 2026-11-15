@@ -1,0 +1,82 @@
+# 项目配置文件
+
+# 数据配置
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  annotations_dir: "data/annotations"
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  image_size: 640
+
+# 数据集配置
+datasets:
+  kvasir_seg:
+    name: "Kvasir-SEG"
+    url: "https://datasets.simula.no/kvasir-seg/"
+    num_images: 1000
+  cvc_clinicdb:
+    name: "CVC-ClinicDB"
+    url: "https://polyp.grand-challenge.org/CVCClinicDB/"
+    num_images: 612
+
+# YOLOv8-seg 配置
+yolov8:
+  model: "yolov8n-seg.pt"  # n/s/m/l/x
+  epochs: 100
+  batch_size: 16
+  imgsz: 640
+  lr0: 0.01
+  weight_decay: 0.0005
+  momentum: 0.937
+  augment: true
+  mosaic: 1.0
+  mixup: 0.1
+
+# SAM 配置
+sam:
+  model_type: "vit_h"  # vit_h / vit_l / vit_b / vit_t (mobile-sam)
+  checkpoint: "models/weights/sam_vit_h_4b8939.pth"
+  device: "cuda"
+
+# 训练配置
+training:
+  device: "cuda"
+  workers: 8
+  save_period: 10
+  patience: 50
+  seed: 42
+
+# 推理配置
+inference:
+  conf_threshold: 0.25
+  iou_threshold: 0.7
+  max_detections: 300
+  device: "cuda"
+
+# 后端配置
+backend:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 1
+
+# 前端配置
+frontend:
+  title: "息肉检测与分割系统"
+  theme: "light"
+  layout: "wide"
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/train.log"
+
+# 输出配置
+output:
+  save_dir: "outputs"
+  save_predictions: true
+  save_masks: true
+  save_visualizations: true

@@ -1,0 +1,31 @@
+# YOLOv8-seg 训练配置（基于 config.yaml）
+
+# 训练参数
+model: yolov8n-seg.pt  # 使用 nano 版本，快速训练
+epochs: 100
+batch_size: 16
+imgsz: 640
+device: 0  # 使用 GPU
+
+# 数据配置
+data: data/processed/kvasir_yolo/data.yaml
+
+# 优化器参数
+lr0: 0.01
+weight_decay: 0.0005
+momentum: 0.937
+
+# 数据增强
+augment: true
+mosaic: 1.0
+mixup: 0.1
+
+# 其他设置
+workers: 8
+save_period: 10
+patience: 50
+seed: 42
+
+# 输出
+project: models/yolov8_seg
+name: kvasir_baseline_exp1

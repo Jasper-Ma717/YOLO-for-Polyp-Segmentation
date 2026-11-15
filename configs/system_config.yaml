@@ -1,0 +1,57 @@
+# 系统配置文件
+
+# 服务配置
+server:
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+
+# 模型配置
+model:
+  # YOLOv8-seg 模型路径
+  yolo_weights: "models/yolov8_seg/best.pt"
+  # 推理设备: cuda 或 cpu
+  device: "cuda"
+  # 置信度阈值
+  conf_threshold: 0.25
+  # IOU阈值
+  iou_threshold: 0.7
+  # 图片尺寸
+  imgsz: 640
+
+# 文件上传配置
+upload:
+  # 允许的图片格式
+  image_extensions: [".jpg", ".jpeg", ".png", ".bmp", ".webp"]
+  # 允许的视频格式
+  video_extensions: [".mp4", ".avi", ".mov", ".mkv", ".webm"]
+  # 图片最大大小 (MB)
+  max_image_size: 10
+  # 视频最大大小 (MB)
+  max_video_size: 500
+  # 上传目录
+  upload_dir: "static/uploads"
+  # 结果目录
+  result_dir: "static/results"
+  # 临时文件目录
+  temp_dir: "static/temp"
+
+# 数据库配置
+database:
+  # SQLite 数据库路径
+  path: "data/history.db"
+
+# 视频处理配置
+video:
+  # 帧率
+  fps: 30
+  # 视频质量 (1-10)
+  quality: 8
+  # 最大处理帧数 (0表示不限制)
+  max_frames: 0
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/system.log"
